@@ -1,55 +1,255 @@
-# Πολεμιστής vs Εξωγήινοι
+# 🚀 Warrior vs Aliens
 
-Ένα παιχνίδι μάχης σε Java console όπου ένας πολεμιστής αντιμετωπίζει μια στρατιά εξωγήινων.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Java Version](https://img.shields.io/badge/Java-11%2B-blue)](https://www.oracle.com/java/)
+[![Build Tool](https://img.shields.io/badge/Build-Maven-red)](https://maven.apache.org/)
 
-## Περιγραφή
+A turn-based battle game demonstrating **Strategy** and **Observer** design patterns, developed as a university semester project for the Computer Science Department.
 
-Αυτό το project είναι μια υλοποίηση ενός παιχνιδιού μάχης με χρήση των σχεδιαστικών προτύπων Strategy και Observer.
-- Ο πολεμιστής και οι εξωγήινοι επιτίθενται εναλλάξ
-- Οι επιθέσεις των εξωγήινων ελέγχονται από τον χρήστη (επιλογή τύπου επίθεσης)
-- Ένα τηλεσκόπιο και ένας δορυφόρος παρατηρούν τις κινήσεις των εξωγήινων και ενημερώνουν τον πολεμιστή
+## 📖 Table of Contents
 
-## Σχεδιαστικά Πρότυπα
+- [About](#about)
+- [Design Patterns](#design-patterns)
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Running the Game](#running-the-game)
+- [How to Play](#how-to-play)
+- [Project Structure](#project-structure)
+- [Testing](#testing)
+- [Contributing](#contributing)
+- [License](#license)
+
+## 🎮 About
+
+**Warrior vs Aliens** is a console-based battle game where a lone warrior faces an army of extraterrestrial invaders. The game showcases object-oriented programming principles and demonstrates the practical implementation of two fundamental design patterns:
+
+- **Strategy Pattern**: Defines different attack behaviors for both the warrior and aliens
+- **Observer Pattern**: Implements detection systems (Satellite & Telescope) that monitor alien movements
+
+This project was created as a semester assignment to demonstrate understanding of software design patterns and clean code principles.
+
+## 🏗️ Design Patterns
 
 ### Strategy Pattern
-- **WarriorAttackStrategy**: Διεπαφή για τη στρατηγική επίθεσης του πολεμιστή
-- **DefaultWarriorStrategy**: Υλοποίηση της στρατηγικής επίθεσης του πολεμιστή
-- **AlienAttackStrategy**: Διεπαφή για τη στρατηγική επίθεσης των εξωγήινων
-- **FullAttackStrategy**: Υλοποίηση της στρατηγικής πλήρους επίθεσης
-- **PartialAttackStrategy**: Υλοποίηση της στρατηγικής μερικής επίθεσης
+
+The Strategy pattern allows the game to define a family of algorithms, encapsulate each one, and make them interchangeable at runtime.
+
+#### Warrior Attack Strategies
+- **`WarriorAttackStrategy`**: Interface for warrior attack behavior
+- **`DefaultWarriorStrategy`**: Default implementation that combines intel from observers
+
+#### Alien Attack Strategies
+- **`AlienAttackStrategy`**: Interface for alien attack behavior
+- **`FullAttackStrategy`**: All aliens attack simultaneously (more damage, easier to detect)
+- **`PartialAttackStrategy`**: User-selected number of aliens attack (less damage, harder to detect)
 
 ### Observer Pattern
-- **Subject**: Διεπαφή για το αντικείμενο που παρατηρείται
-- **Observer**: Διεπαφή για τους παρατηρητές
-- **AlienArmy**: Υλοποιεί τη διεπαφή Subject
-- **Satellite** και **Telescope**: Υλοποιούν τη διεπαφή Observer
 
-## Κλάσεις του Project
+The Observer pattern establishes a one-to-many dependency between objects, so when one object changes state, all its dependents are notified.
 
-- **Game**: Διαχειρίζεται τη ροή του παιχνιδιού
-- **Warrior**: Αναπαριστά τον πολεμιστή
-- **Alien**: Αναπαριστά έναν εξωγήινο
-- **AlienArmy**: Αναπαριστά τη στρατιά των εξωγήινων
-- **Main**: Περιέχει τη μέθοδο main
+- **`Subject`**: Interface for objects being observed
+- **`Observer`**: Interface for observer objects
+- **`AlienArmy`**: Implements Subject, notifies observers when attacks occur
+- **`Satellite`**: Observer that detects partial attacks (detects ~50% of attackers)
+- **`Telescope`**: Observer that detects full attacks (detects all attackers)
 
-## Πώς να τρέξετε το παιχνίδι
+## ✨ Features
 
-1. Μεταγλωττίστε όλα τα αρχεία:
-   ```
-   javac *.java
-   ```
+- **Turn-based combat**: Warrior attacks on odd rounds, aliens on even rounds
+- **Dynamic difficulty**: Damage calculation based on visibility and attack type
+- **Observer system**: Telescope and Satellite provide intel to the warrior
+- **User interaction**: Choose attack types and number of attacking aliens
+- **Victory conditions**: Win by destroying all aliens or lose when warrior's HP reaches 0
+- **Clean architecture**: Well-structured code following SOLID principles
+- **Comprehensive testing**: Unit tests for core functionality
 
-2. Τρέξτε το πρόγραμμα:
-   ```
-   java Main
-   ```
+## 🚀 Getting Started
 
-## Κανόνες Παιχνιδιού
+### Prerequisites
 
-- Ο πολεμιστής επιτίθεται στους μονούς γύρους
-- Οι εξωγήινοι επιτίθενται στους ζυγούς γύρους
-- Το παιχνίδι τελειώνει όταν είτε η ισχύς του πολεμιστή φτάσει στο 0, είτε όλοι οι εξωγήινοι καταστραφούν
-- Όταν επιτίθεται η στρατιά εξωγήινων, ο χρήστης επιλέγει αν θα γίνει πλήρης ή μερική επίθεση
-- Στην πλήρη επίθεση, επιτίθενται όλοι οι εξωγήινοι και το τηλεσκόπιο τους εντοπίζει
-- Στη μερική επίθεση, ο χρήστης επιλέγει τον αριθμό των εξωγήινων που θα επιτεθούν και ο δορυφόρος εντοπίζει τους μισούς
-- Ο πολεμιστής χρησιμοποιεί τις πληροφορίες από το τηλεσκόπιο και τον δορυφόρο για να καταστρέψει τους εξωγήινους
+- **Java 11** or higher
+- **Maven 3.6+** (optional, for building from source)
+
+### Installation
+
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/xrhstosk59/warrior-vs-aliens.git
+cd warrior-vs-aliens
+```
+
+2. **Build the project**
+
+Using Maven:
+
+```bash
+mvn clean package
+```
+
+This will compile the code, run tests, and create an executable JAR file.
+
+### Running the Game
+
+#### Option 1: Run with Maven
+
+```bash
+mvn exec:java -Dexec.mainClass="gr.university.warriorgame.Main"
+```
+
+#### Option 2: Run the executable JAR
+
+```bash
+java -jar target/warrior-vs-aliens-1.0.0-executable.jar
+```
+
+#### Option 3: Compile and run manually
+
+```bash
+# Compile
+javac -d target/classes -sourcepath src/main/java src/main/java/gr/university/warriorgame/*.java
+
+# Run
+java -cp target/classes gr.university.warriorgame.Main
+```
+
+## 🎯 How to Play
+
+### Game Rules
+
+1. **Warrior attacks on odd rounds (1, 3, 5, ...)**
+   - Destroys all aliens detected by Satellite and Telescope
+   - Gains +15% visibility after each attack
+
+2. **Aliens attack on even rounds (2, 4, 6, ...)**
+   - Choose between Full Attack or Partial Attack
+   - Full Attack: All aliens participate, Telescope detects them all
+   - Partial Attack: You choose how many attack, Satellite detects ~50%
+
+3. **Victory Conditions**
+   - **Win**: Destroy all aliens
+   - **Lose**: Warrior's HP drops to 0
+
+### Game Mechanics
+
+- **Visibility**: Affects how much damage the warrior takes
+  - Higher visibility = Better defense = Less damage
+  - Decreases when aliens attack
+  - Increases when warrior attacks
+
+- **Damage Calculation**
+  - Full Attack: `damage = number_of_aliens × (100 - visibility) / 100`
+  - Partial Attack: `damage = number_of_attackers × (100 - visibility) / 200`
+
+### Example Gameplay
+
+```
+=== ΠΑΙΧΝΙΔΙ ΜΑΧΗΣ: ΠΟΛΕΜΙΣΤΗΣ VS ΕΞΩΓΗΙΝΟΙ ===
+------------------------------------------------
+
+Πόσοι εχθροί θα σας επιτεθούν;
+> 5
+
+=== ΜΑΧΗ ===
+HP Πολεμιστή: 100
+Ορατότητα: 50%
+Εχθροί: 5
+
+---------- ΓΥΡΟΣ 1 ----------
+
+Πολεμιστής: 100 HP | 50% ορατότητα | Άψογα!
+Εχθροί: 5 από 5 | Πολλοί εχθροί ακόμα...
+>> Επίθεση πολεμιστή
+Ο πολεμιστής κατέστρεψε 0 εχθρούς!
+```
+
+## 📁 Project Structure
+
+```
+warrior-vs-aliens/
+├── src/
+│   ├── main/
+│   │   └── java/
+│   │       └── gr/
+│   │           └── university/
+│   │               └── warriorgame/
+│   │                   ├── Main.java                      # Entry point
+│   │                   ├── Game.java                      # Game controller
+│   │                   ├── Warrior.java                   # Warrior entity
+│   │                   ├── Alien.java                     # Alien entity
+│   │                   ├── AlienArmy.java                 # Army (Subject)
+│   │                   ├── Subject.java                   # Observer pattern
+│   │                   ├── Observer.java                  # Observer pattern
+│   │                   ├── Satellite.java                 # Observer impl
+│   │                   ├── Telescope.java                 # Observer impl
+│   │                   ├── WarriorAttackStrategy.java     # Strategy pattern
+│   │                   ├── DefaultWarriorStrategy.java    # Strategy impl
+│   │                   ├── AlienAttackStrategy.java       # Strategy pattern
+│   │                   ├── FullAttackStrategy.java        # Strategy impl
+│   │                   └── PartialAttackStrategy.java     # Strategy impl
+│   └── test/
+│       └── java/
+│           └── gr/
+│               └── university/
+│                   └── warriorgame/
+│                       ├── AlienTest.java
+│                       ├── WarriorTest.java
+│                       └── ObserverPatternTest.java
+├── pom.xml                                                # Maven configuration
+├── LICENSE                                                # MIT License
+├── README.md                                              # This file
+└── CONTRIBUTING.md                                        # Contribution guidelines
+```
+
+## 🧪 Testing
+
+The project includes comprehensive unit tests using JUnit 5.
+
+### Run all tests
+
+```bash
+mvn test
+```
+
+### Run specific test class
+
+```bash
+mvn test -Dtest=WarriorTest
+```
+
+### Test Coverage
+
+- `AlienTest`: Tests for Alien entity behavior
+- `WarriorTest`: Tests for Warrior mechanics (power, visibility, defeat)
+- `ObserverPatternTest`: Tests for Satellite and Telescope detection logic
+
+## 🤝 Contributing
+
+Contributions are welcome! Please read the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to contribute to this project.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👨‍🎓 Academic Context
+
+This project was developed as a semester assignment for the Computer Science Department. It demonstrates:
+
+- Object-Oriented Programming (OOP) principles
+- Design Patterns (Strategy, Observer)
+- Clean Code practices
+- Unit Testing
+- Build automation with Maven
+- Version control with Git
+
+## 🙏 Acknowledgments
+
+- University professors for the assignment requirements
+- The Java community for excellent documentation
+- Design Patterns: Elements of Reusable Object-Oriented Software (Gang of Four)
+
+---
+
+**Made with ❤️ for learning and demonstration purposes**
