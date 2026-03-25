@@ -19,7 +19,7 @@ public class Game {
     private AlienArmy alienArmy;
     private Satellite satellite;
     private Telescope telescope;
-    private Scanner scanner;
+    private final Scanner scanner;
     private int currentRound;
     private int totalAliens;
 
@@ -33,7 +33,6 @@ public class Game {
     public Game() {
         this.scanner = new Scanner(System.in);
         this.currentRound = 1;
-        initialize();
     }
 
     /**
@@ -75,6 +74,10 @@ public class Game {
 
         while (true) {
             try {
+                if (!scanner.hasNextLine()) {
+                    throw new InputUnavailableException("Δεν δόθηκε αριθμός εχθρών.");
+                }
+
                 int number = Integer.parseInt(scanner.nextLine());
 
                 if (number <= 0) {
@@ -171,20 +174,32 @@ public class Game {
      * Main game loop that executes rounds until victory or defeat.
      */
     public void play() {
-        boolean continueGame = true;
+        try {
+            initialize();
 
-        while (continueGame) {
-            continueGame = executeRound();
+            boolean continueGame = true;
 
-            if (continueGame) {
-                System.out.println("\nΠατήστε Enter για να συνεχίσετε...");
-                scanner.nextLine();
+            while (continueGame) {
+                continueGame = executeRound();
+
+                if (continueGame) {
+                    System.out.println("\nΠατήστε Enter για να συνεχίσετε...");
+                    if (!scanner.hasNextLine()) {
+                        throw new InputUnavailableException("Η ροή εισόδου τερματίστηκε.");
+                    }
+                    scanner.nextLine();
+                }
             }
+        } catch (InputUnavailableException e) {
+            printNewLine();
+            System.out.println(">> Η είσοδος τερματίστηκε. Η μάχη ολοκληρώνεται ομαλά.");
+        } finally {
+            printNewLine();
+            System.out.println("### ΤΕΛΟΣ ΜΑΧΗΣ ###");
+            if (warrior != null && alienArmy != null) {
+                displayStatistics();
+            }
+            scanner.close();
         }
-
-        printNewLine();
-        System.out.println("### ΤΕΛΟΣ ΜΑΧΗΣ ###");
-        displayStatistics();
-        scanner.close();
     }
 }

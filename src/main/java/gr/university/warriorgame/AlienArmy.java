@@ -35,7 +35,7 @@ public class AlienArmy implements Subject {
         }
 
         // Set default attack strategy
-        this.attackStrategy = new FullAttackStrategy(scanner);
+        this.attackStrategy = new FullAttackStrategy();
     }
 
     @Override
@@ -80,11 +80,15 @@ public class AlienArmy implements Subject {
 
         while (true) {
             try {
+                if (!scanner.hasNextLine()) {
+                    throw new InputUnavailableException("Δεν επιλέχθηκε τύπος επίθεσης.");
+                }
+
                 String input = scanner.nextLine();
                 int choice = Integer.parseInt(input);
 
                 if (choice == 1) {
-                    attackStrategy = new FullAttackStrategy(scanner);
+                    attackStrategy = new FullAttackStrategy();
                     break;
                 } else if (choice == 2) {
                     attackStrategy = new PartialAttackStrategy(scanner);

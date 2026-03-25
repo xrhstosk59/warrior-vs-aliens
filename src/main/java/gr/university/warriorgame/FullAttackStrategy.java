@@ -2,7 +2,6 @@ package gr.university.warriorgame;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Full attack strategy for the alien army.
@@ -13,17 +12,13 @@ import java.util.Scanner;
  * </p>
  */
 public class FullAttackStrategy implements AlienAttackStrategy {
-    private final Scanner scanner;
-
     private static final int VISIBILITY_REDUCTION = 10;
 
     /**
      * Constructs a FullAttackStrategy.
      *
-     * @param scanner scanner for potential user input (unused in this strategy)
      */
-    public FullAttackStrategy(Scanner scanner) {
-        this.scanner = scanner;
+    public FullAttackStrategy() {
     }
 
     @Override

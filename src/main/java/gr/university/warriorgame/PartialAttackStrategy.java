@@ -77,6 +77,10 @@ public class PartialAttackStrategy implements AlienAttackStrategy {
 
         while (true) {
             try {
+                if (!scanner.hasNextLine()) {
+                    throw new InputUnavailableException("Δεν δηλώθηκε πλήθος επιτιθέμενων εξωγήινων.");
+                }
+
                 String input = scanner.nextLine();
                 int number = Integer.parseInt(input);
 
