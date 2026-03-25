@@ -12,6 +12,7 @@ mkdir -p target/classes
 # Compile all Java sources
 echo "Compiling Java sources..."
 javac -d target/classes \
+      --release 24 \
       -sourcepath src/main/java \
       src/main/java/gr/university/warriorgame/*.java
 

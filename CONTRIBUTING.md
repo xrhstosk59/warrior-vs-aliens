@@ -55,7 +55,7 @@ Enhancement suggestions are tracked as GitHub issues. When creating an enhanceme
 
 ### Prerequisites
 
-- Java 11 or higher
+- Java 24
 - Maven 3.6+
 - Git
 
@@ -222,7 +222,7 @@ What actually happened.
 
 **Environment:**
 - OS: [e.g., Windows 10, macOS 12.0, Ubuntu 22.04]
-- Java Version: [e.g., 11, 17]
+- Java Version: [e.g., 24]
 - Maven Version: [e.g., 3.8.6]
 
 **Additional context**

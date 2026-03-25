@@ -1,7 +1,7 @@
 # 🚀 Warrior vs Aliens
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Java Version](https://img.shields.io/badge/Java-11%2B-blue)](https://www.oracle.com/java/)
+[![Java Version](https://img.shields.io/badge/Java-24-blue)](https://www.oracle.com/java/)
 [![Build Tool](https://img.shields.io/badge/Build-Maven-red)](https://maven.apache.org/)
 
 A turn-based battle game demonstrating **Strategy** and **Observer** design patterns, developed as a university semester project for the Computer Science Department.
@@ -69,7 +69,7 @@ The Observer pattern establishes a one-to-many dependency between objects, so wh
 
 ### Prerequisites
 
-- **Java 11** or higher
+- **Java 24**
 - **Maven 3.6+** (optional, for building from source)
 
 ### Installation
@@ -109,7 +109,7 @@ java -jar target/warrior-vs-aliens-1.0.0-executable.jar
 
 ```bash
 # Compile
-javac -d target/classes -sourcepath src/main/java src/main/java/gr/university/warriorgame/*.java
+javac --release 24 -d target/classes -sourcepath src/main/java src/main/java/gr/university/warriorgame/*.java
 
 # Run
 java -cp target/classes gr.university.warriorgame.Main
