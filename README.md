@@ -4,7 +4,9 @@
 [![Java Version](https://img.shields.io/badge/Java-24-blue)](https://www.oracle.com/java/)
 [![Build Tool](https://img.shields.io/badge/Build-Maven-red)](https://maven.apache.org/)
 
-A turn-based battle game demonstrating **Strategy** and **Observer** design patterns, developed as a university semester project for the Computer Science Department.
+A turn-based Java battle game developed as a university semester project to practice **Strategy** and **Observer** design patterns.
+
+This repository reflects my semester-project implementation with selective AI-assisted help during development and cleanup.
 
 ## 📖 Table of Contents
 
@@ -23,12 +25,12 @@ A turn-based battle game demonstrating **Strategy** and **Observer** design patt
 
 ## 🎮 About
 
-**Warrior vs Aliens** is a console-based battle game where a lone warrior faces an army of extraterrestrial invaders. The game showcases object-oriented programming principles and demonstrates the practical implementation of two fundamental design patterns:
+**Warrior vs Aliens** is a console-based battle game where a lone warrior faces an army of extraterrestrial invaders. The project focuses on object-oriented programming practice and on the implementation of two core design patterns:
 
 - **Strategy Pattern**: Defines different attack behaviors for both the warrior and aliens
 - **Observer Pattern**: Implements detection systems (Satellite & Telescope) that monitor alien movements
 
-This project was created as a semester assignment to demonstrate understanding of software design patterns and clean code principles.
+This project was created as a semester assignment to demonstrate understanding of software design patterns in a small Java application.
 
 ## 🏗️ Design Patterns
 
@@ -62,8 +64,8 @@ The Observer pattern establishes a one-to-many dependency between objects, so wh
 - **Observer system**: Telescope and Satellite provide intel to the warrior
 - **User interaction**: Choose attack types and number of attacking aliens
 - **Victory conditions**: Win by destroying all aliens or lose when warrior's HP reaches 0
-- **Clean architecture**: Well-structured code following SOLID principles
-- **Comprehensive testing**: Unit tests for core functionality
+- **Structured codebase**: Clear separation of responsibilities across the main game classes
+- **Basic testing**: Unit tests for core functionality
 
 ## 🚀 Getting Started
 
